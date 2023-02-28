@@ -1,9 +1,9 @@
+using System.Security.Permissions;
+
 namespace WinFormsApp4
 {
     public partial class Form1 : Form
-    {
-        string buffer = "";
-        
+    {      
         int currentSelectionStart;
         public Form1()
         {
@@ -12,14 +12,13 @@ namespace WinFormsApp4
 
         private void menuHeader_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            //jhgjhghjgjg
+            
         }
 
         private void âûğåçàòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            buffer = textBox1.SelectedText;
-            //textBox1.SelectedText = "";
-            textBox1.Cut();
+            if(textBox1.SelectionLength > 0)
+                textBox1.Cut();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -29,14 +28,20 @@ namespace WinFormsApp4
 
         private void êîïèğîâàòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            buffer = textBox1.SelectedText;
+            if (textBox1.SelectionLength > 0)
+                textBox1.Copy();
         }
 
         private void âñòàâèòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            currentSelectionStart = textBox1.SelectionStart;
-            textBox1.Text = textBox1.Text.Insert(currentSelectionStart, buffer);
-            textBox1.SelectionStart = currentSelectionStart + buffer.Length;
+            if(Clipboard.GetDataObject().GetDataPresent(DataFormats.Text))
+            {
+                if(textBox1.SelectionLength > 0)
+                {
+                    textBox1.SelectionStart += textBox1.SelectionLength;
+                }
+            }
+            textBox1.Paste();
         }
 
         private void ñîçäàòüToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,14 +56,10 @@ namespace WinFormsApp4
 
         private void óäàëèòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            currentSelectionStart = textBox1.SelectionStart;
-
             if (textBox1.SelectionLength == 0)
-                textBox1.Text = textBox1.Text.Remove(currentSelectionStart, 1);
-            else
-                textBox1.SelectedText = "";
+                textBox1.SelectionLength = 1;
 
-            textBox1.SelectionStart = currentSelectionStart;
+            textBox1.Cut();
         }
 
         private void íàéòèToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,6 +67,32 @@ namespace WinFormsApp4
             Form2 form2 = new Form2();
             form2.Show();
 
+        }
+
+        private void çàìåíèòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //textBox1.Text = textBox1.Text.Replace();
+            
+        }
+
+        private void âûäåëèòüÂñåToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.SelectionStart = 0;
+            textBox1.SelectionLength = textBox1.TextLength;
+        }
+
+        private void îòìåíèòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(textBox1.CanUndo)
+            {
+                textBox1.Undo();
+                textBox1.ClearUndo();
+            }
+        }
+
+        private void ïåğåéòèToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

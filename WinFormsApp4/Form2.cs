@@ -24,7 +24,32 @@ namespace WinFormsApp4
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            Program.searching = searchField.Text;
+            DataClass.searching = searchField.Text;
+        }
+
+        private void closeButton_MouseHover(object sender, EventArgs e)
+        {
+            closeButton.BackColor = Color.Red;
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeButton_MouseLeave(object sender, EventArgs e)
+        {
+            closeButton.BackColor = Control.DefaultBackColor;
+        }
+
+        private void buttonSearch_MouseHover(object sender, EventArgs e)
+        {
+            //buttonSearch.BackColor = Color.PowderBlue;
+        }
+
+        private void buttonSearch_MouseLeave(object sender, EventArgs e)
+        {
+            //buttonSearch.BackColor = Control.DefaultBackColor;
         }
     }
 }

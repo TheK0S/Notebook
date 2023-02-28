@@ -4,7 +4,6 @@ namespace WinFormsApp4
 {
     internal static class Program
     {
-        public static string searching = "";
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

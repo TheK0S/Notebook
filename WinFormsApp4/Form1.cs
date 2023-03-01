@@ -4,7 +4,6 @@ namespace WinFormsApp4
 {
     public partial class Form1 : Form
     {      
-        int currentSelectionStart;
         public Form1()
         {
             InitializeComponent();
@@ -64,8 +63,8 @@ namespace WinFormsApp4
 
         private void Ì‡ÈÚËToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+            
+            DataClass.form2_search.Show();
 
         }
 
@@ -93,6 +92,21 @@ namespace WinFormsApp4
         private void ÔÂÂÈÚËToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void fontDialog1_Apply(object sender, EventArgs e)
+        {
+
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void ÒÔ‡‚Í‡ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

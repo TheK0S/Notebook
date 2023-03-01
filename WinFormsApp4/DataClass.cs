@@ -9,5 +9,9 @@ namespace WinFormsApp4
     internal class DataClass
     {
         public static string searching = "";
+        public static Form1 form1_main = new Form1();
+        public static Form2 form2_search = new Form2();
+
+        
     }
 }

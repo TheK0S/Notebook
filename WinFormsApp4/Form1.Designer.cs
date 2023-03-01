@@ -439,6 +439,6 @@
         private ToolStripMenuItem отправитьОтзывToolStripMenuItem;
         private ToolStripMenuItem оПрограммеToolStripMenuItem;
         private ToolStripMenuItem вырезатьToolStripMenuItem;
-        private TextBox textBox1;
+        public TextBox textBox1;
     }
 }

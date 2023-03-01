@@ -29,7 +29,7 @@ namespace WinFormsApp4
         {
             if (ToDownRadioButton.Checked)
             {
-                searchStartIndex = DataClass.form1_main.Text.IndexOf(searchField.Text, searchStartIndex);
+                searchStartIndex = DataClass.form1_main.textBox1.Text.IndexOf(searchField.Text, searchStartIndex);
 
                 if(searchStartIndex < 0)
                 {
@@ -39,18 +39,35 @@ namespace WinFormsApp4
                     searchStartIndex = 0;
                     return;
                 }
-                if (DataClass.form1_main.Text.Contains(searchField.Text))
-                {
-
-                }
                 else
                 {
-
+                    DataClass.form1_main.textBox1.Focus();
+                    DataClass.form1_main.textBox1.SelectionLength = 0;
+                    DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
+                    DataClass.form1_main.textBox1.SelectionLength = searchField.Text.Length;                    
+                    searchStartIndex += searchField.Text.Length;                    
                 }
             }
             else if (ToUpRadioButton.Checked)
             {
+                searchStartIndex = DataClass.form1_main.textBox1.Text.LastIndexOf(searchField.Text, searchStartIndex);
 
+                if (searchStartIndex < 0)
+                {
+                    ErrorForm errorForm1 = new ErrorForm();
+                    errorForm1.label1.Text = $"Не удается найти: {searchField.Text}";
+                    errorForm1.Show();
+                    searchStartIndex = DataClass.form1_main.textBox1.Text.Length - 1;
+                    return;
+                }
+                else
+                {
+                    DataClass.form1_main.textBox1.Focus();
+                    DataClass.form1_main.textBox1.SelectionLength = 0;
+                    DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
+                    DataClass.form1_main.textBox1.SelectionLength = searchField.Text.Length;                    
+                    searchStartIndex -= searchField.Text.Length;                    
+                }
             }
 
             //DataClass.form1_main.Text.IndexOf(searchField.Text) >= 0

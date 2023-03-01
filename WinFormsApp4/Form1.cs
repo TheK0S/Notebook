@@ -63,7 +63,7 @@ namespace WinFormsApp4
 
         private void Ì‡ÈÚËToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            textBox1.SelectionLength = 0;
             DataClass.form2_search.Show();
 
         }

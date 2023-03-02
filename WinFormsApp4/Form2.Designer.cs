@@ -51,6 +51,7 @@
             this.searchField.Name = "searchField";
             this.searchField.Size = new System.Drawing.Size(350, 23);
             this.searchField.TabIndex = 1;
+            this.searchField.UseWaitCursor = true;
             this.searchField.TextChanged += new System.EventHandler(this.searchField_TextChanged);
             // 
             // buttonSearch
@@ -64,6 +65,7 @@
             this.buttonSearch.TabIndex = 2;
             this.buttonSearch.Text = "Найти далее";
             this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.UseWaitCursor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             this.buttonSearch.MouseLeave += new System.EventHandler(this.buttonSearch_MouseLeave);
             this.buttonSearch.MouseHover += new System.EventHandler(this.buttonSearch_MouseHover);
@@ -78,6 +80,7 @@
             this.checkBoxRegister.TabIndex = 3;
             this.checkBoxRegister.Text = "С учетом регистра";
             this.checkBoxRegister.UseVisualStyleBackColor = true;
+            this.checkBoxRegister.UseWaitCursor = true;
             this.checkBoxRegister.CheckedChanged += new System.EventHandler(this.checkBoxRegister_CheckedChanged);
             // 
             // label1
@@ -89,6 +92,7 @@
             this.label1.Size = new System.Drawing.Size(37, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Что:";
+            this.label1.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -100,6 +104,7 @@
             this.label2.Size = new System.Drawing.Size(52, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "Найти";
+            this.label2.UseWaitCursor = true;
             // 
             // closeButton
             // 
@@ -112,6 +117,7 @@
             this.closeButton.TabIndex = 7;
             this.closeButton.Text = "╳";
             this.closeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.closeButton.UseWaitCursor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
             this.closeButton.MouseHover += new System.EventHandler(this.closeButton_MouseHover);
@@ -132,6 +138,7 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Направление";
+            this.groupBox1.UseWaitCursor = true;
             // 
             // ToDownRadioButton
             // 
@@ -144,6 +151,7 @@
             this.ToDownRadioButton.TabStop = true;
             this.ToDownRadioButton.Text = "Вниз";
             this.ToDownRadioButton.UseVisualStyleBackColor = true;
+            this.ToDownRadioButton.UseWaitCursor = true;
             this.ToDownRadioButton.CheckedChanged += new System.EventHandler(this.ToDownRadioButton_CheckedChanged);
             // 
             // ToUpRadioButton
@@ -155,6 +163,7 @@
             this.ToUpRadioButton.TabIndex = 0;
             this.ToUpRadioButton.Text = "Вверх";
             this.ToUpRadioButton.UseVisualStyleBackColor = true;
+            this.ToUpRadioButton.UseWaitCursor = true;
             this.ToUpRadioButton.CheckedChanged += new System.EventHandler(this.ToUpRadioButton_CheckedChanged);
             // 
             // CancelBatton
@@ -168,6 +177,7 @@
             this.CancelBatton.TabIndex = 9;
             this.CancelBatton.Text = "Отмена";
             this.CancelBatton.UseVisualStyleBackColor = true;
+            this.CancelBatton.UseWaitCursor = true;
             this.CancelBatton.Click += new System.EventHandler(this.CancelBatton_Click);
             // 
             // Form2
@@ -175,6 +185,8 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(540, 164);
             this.ControlBox = false;
             this.Controls.Add(this.CancelBatton);
@@ -193,7 +205,9 @@
             this.MinimumSize = new System.Drawing.Size(540, 164);
             this.Name = "Form2";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Найти";
+            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.Form2_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseMove);
@@ -216,7 +230,7 @@
         private FileSystemWatcher fileSystemWatcher1;
         private Button CancelBatton;
         private GroupBox groupBox1;
-        private RadioButton ToDownRadioButton;
-        private RadioButton ToUpRadioButton;
+        public RadioButton ToDownRadioButton;
+        public RadioButton ToUpRadioButton;
     }
 }

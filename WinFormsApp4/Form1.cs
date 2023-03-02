@@ -63,9 +63,8 @@ namespace WinFormsApp4
 
         private void íàéòèToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.SelectionLength = 0;
+            DataClass.form2_search = new Form2();
             DataClass.form2_search.Show();
-
         }
 
         private void çàìåíèòüToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,6 +106,43 @@ namespace WinFormsApp4
         private void ñïğàâêàToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ïğàâêàToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            îòìåíèòüToolStripMenuItem.Enabled = textBox1.CanUndo ? true : false;
+
+            âûğåçàòüToolStripMenuItem.Enabled = textBox1.SelectionLength > 0 ? true : false;
+
+            êîïèğîâàòüToolStripMenuItem.Enabled = textBox1.SelectionLength > 0 ? true : false;
+
+            âñòàâèòüToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) ? true : false;
+
+            óäàëèòüToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
+
+            íàéòèToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
+
+            íàéòèÄàëååToolStripMenuItem.Enabled = textBox1.TextLength > 0 && DataClass.form2_search.Visible ? true : false;
+
+            íàéòèĞàíååToolStripMenuItem.Enabled = textBox1.TextLength > 0 && DataClass.form2_search.Visible ? true : false;
+
+            çàìåíèòüToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
+
+            ïåğåéòèToolStripMenuItem.Enabled = textBox1.Lines.Length > 1 ? true : false;
+
+            âûäåëèòüÂñåToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
+        }
+
+        private void íàéòèÄàëååToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataClass.form2_search.ToDownRadioButton.Checked = true;
+            DataClass.form2_search.buttonSearch_Click(sender, e);
+        }
+
+        private void íàéòèĞàíååToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataClass.form2_search.ToUpRadioButton.Checked = true;
+            DataClass.form2_search.buttonSearch_Click(sender, e);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace WinFormsApp4
     {
         Point lastPoint;
         int searchStartIndex;
+        int searchLength;
         public Form2()
         {
             InitializeComponent();
@@ -25,16 +26,25 @@ namespace WinFormsApp4
             
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        public void buttonSearch_Click(object sender, EventArgs e)
         {
+            string stringText = DataClass.form1_main.textBox1.Text;
+            string searchValue = searchField.Text;
+
+            if (!checkBoxRegister.Checked)
+            {
+                stringText = stringText.ToLower();
+                searchValue = searchValue.ToLower();
+            }
+
             if (ToDownRadioButton.Checked)
             {
-                searchStartIndex = DataClass.form1_main.textBox1.Text.IndexOf(searchField.Text, searchStartIndex);
-
-                if(searchStartIndex < 0)
+                searchStartIndex = stringText.IndexOf(searchValue, searchStartIndex);
+                
+                if (searchStartIndex < 0)
                 {
                     ErrorForm errorForm1 = new ErrorForm();
-                    errorForm1.label1.Text = $"Не удается найти: {searchField.Text}";
+                    errorForm1.label1.Text = $"Не удается найти: {searchValue}";
                     errorForm1.Show();
                     searchStartIndex = 0;
                     return;
@@ -44,20 +54,23 @@ namespace WinFormsApp4
                     DataClass.form1_main.textBox1.Focus();
                     DataClass.form1_main.textBox1.SelectionLength = 0;
                     DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
-                    DataClass.form1_main.textBox1.SelectionLength = searchField.Text.Length;                    
-                    searchStartIndex += searchField.Text.Length;                    
+                    DataClass.form1_main.textBox1.SelectionLength = searchValue.Length;                    
+                    searchStartIndex += searchValue.Length;                   
                 }
             }
             else if (ToUpRadioButton.Checked)
             {
-                searchStartIndex = DataClass.form1_main.textBox1.Text.LastIndexOf(searchField.Text, searchStartIndex);
+                if (searchStartIndex == 0)
+                    searchStartIndex = stringText.Length - 1;
+
+                searchStartIndex = stringText.LastIndexOf(searchField.Text, searchStartIndex);
 
                 if (searchStartIndex < 0)
                 {
                     ErrorForm errorForm1 = new ErrorForm();
-                    errorForm1.label1.Text = $"Не удается найти: {searchField.Text}";
+                    errorForm1.label1.Text = $"Не удается найти: {searchValue}";
                     errorForm1.Show();
-                    searchStartIndex = DataClass.form1_main.textBox1.Text.Length - 1;
+                    searchStartIndex = stringText.Length - 1;
                     return;
                 }
                 else
@@ -65,12 +78,10 @@ namespace WinFormsApp4
                     DataClass.form1_main.textBox1.Focus();
                     DataClass.form1_main.textBox1.SelectionLength = 0;
                     DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
-                    DataClass.form1_main.textBox1.SelectionLength = searchField.Text.Length;                    
-                    searchStartIndex -= searchField.Text.Length;                    
+                    DataClass.form1_main.textBox1.SelectionLength = searchValue.Length;
+                    searchStartIndex -= searchValue.Length;
                 }
             }
-
-            //DataClass.form1_main.Text.IndexOf(searchField.Text) >= 0
         }
 
         private void closeButton_MouseHover(object sender, EventArgs e)

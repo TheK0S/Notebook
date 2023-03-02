@@ -28,24 +28,26 @@ namespace WinFormsApp4
 
         public void buttonSearch_Click(object sender, EventArgs e)
         {
+            if(DataClass.errorForm != null)
+                DataClass.errorForm.Close();
+
             string stringText = DataClass.form1_main.textBox1.Text;
             string searchValue = searchField.Text;
 
-            if (!checkBoxRegister.Checked)
-            {
-                stringText = stringText.ToLower();
-                searchValue = searchValue.ToLower();
-            }
+            StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+
+            if (checkBoxRegister.Checked)
+                comparisonType = StringComparison.Ordinal;
 
             if (ToDownRadioButton.Checked)
             {
-                searchStartIndex = stringText.IndexOf(searchValue, searchStartIndex);
+                searchStartIndex = stringText.IndexOf(searchValue, searchStartIndex, comparisonType);
                 
                 if (searchStartIndex < 0)
                 {
-                    ErrorForm errorForm1 = new ErrorForm();
-                    errorForm1.label1.Text = $"Не удается найти: {searchValue}";
-                    errorForm1.Show();
+                    DataClass.errorForm = new ErrorForm();
+                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchValue}";
+                    DataClass.errorForm.Show();
                     searchStartIndex = 0;
                     return;
                 }
@@ -63,14 +65,14 @@ namespace WinFormsApp4
                 if (searchStartIndex == 0)
                     searchStartIndex = stringText.Length - 1;
 
-                searchStartIndex = stringText.LastIndexOf(searchField.Text, searchStartIndex);
+                searchStartIndex = stringText.LastIndexOf(searchValue, searchStartIndex, comparisonType);
 
                 if (searchStartIndex < 0)
                 {
-                    ErrorForm errorForm1 = new ErrorForm();
-                    errorForm1.label1.Text = $"Не удается найти: {searchValue}";
-                    errorForm1.Show();
-                    searchStartIndex = stringText.Length - 1;
+                    DataClass.errorForm = new ErrorForm();
+                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchValue}";
+                    DataClass.errorForm.Show();
+                    searchStartIndex = 0;
                     return;
                 }
                 else

@@ -13,6 +13,7 @@ namespace WinFormsApp4
         public static Form2 form2_search = new Form2();
         public static ErrorForm? errorForm;
         public static FormReplace? formReplace;
+        public static FormGoTo? formGoTo;
         
     }
 }

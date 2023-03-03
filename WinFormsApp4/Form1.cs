@@ -90,7 +90,8 @@ namespace WinFormsApp4
 
         private void ïåğåéòèToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            DataClass.formGoTo = new FormGoTo();
+            DataClass.formGoTo.Show();
         }
 
         private void fontDialog1_Apply(object sender, EventArgs e)
@@ -128,7 +129,7 @@ namespace WinFormsApp4
 
             çàìåíèòüToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
 
-            ïåğåéòèToolStripMenuItem.Enabled = textBox1.Lines.Length > 1 ? true : false;
+            //ïåğåéòèToolStripMenuItem.Enabled = textBox1.Lines.Count() > 1 ? true : false;
 
             âûäåëèòüÂñåToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
         }

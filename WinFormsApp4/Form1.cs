@@ -69,8 +69,8 @@ namespace WinFormsApp4
 
         private void çàìåíèòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //textBox1.Text = textBox1.Text.Replace();
-            
+            DataClass.formReplace = new FormReplace();   
+            DataClass.formReplace.Show();
         }
 
         private void âûäåëèòüÂñåToolStripMenuItem_Click(object sender, EventArgs e)

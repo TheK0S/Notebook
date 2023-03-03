@@ -11,7 +11,8 @@ namespace WinFormsApp4
         public static string searching = "";
         public static Form1 form1_main = new Form1();
         public static Form2 form2_search = new Form2();
-        public static ErrorForm errorForm;
+        public static ErrorForm? errorForm;
+        public static FormReplace? formReplace;
         
     }
 }

@@ -54,6 +54,8 @@
             this.closeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.closeButton.UseWaitCursor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
+            this.closeButton.MouseHover += new System.EventHandler(this.closeButton_MouseHover);
             // 
             // labelHeade
             // 

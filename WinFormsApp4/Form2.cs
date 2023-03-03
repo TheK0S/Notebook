@@ -41,12 +41,12 @@ namespace WinFormsApp4
 
             if (ToDownRadioButton.Checked)
             {
-                searchStartIndex = stringText.IndexOf(searchValue, searchStartIndex, comparisonType);
+                searchStartIndex = DataClass.form1_main.textBox1.Text.IndexOf(searchField.Text, searchStartIndex, comparisonType);
                 
                 if (searchStartIndex < 0)
                 {
                     DataClass.errorForm = new ErrorForm();
-                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchValue}";
+                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchField.Text}";
                     DataClass.errorForm.Show();
                     searchStartIndex = 0;
                     return;
@@ -56,21 +56,21 @@ namespace WinFormsApp4
                     DataClass.form1_main.textBox1.Focus();
                     DataClass.form1_main.textBox1.SelectionLength = 0;
                     DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
-                    DataClass.form1_main.textBox1.SelectionLength = searchValue.Length;                    
-                    searchStartIndex += searchValue.Length;                   
+                    DataClass.form1_main.textBox1.SelectionLength = searchField.TextLength;                    
+                    searchStartIndex += searchField.TextLength;                  
                 }
             }
             else if (ToUpRadioButton.Checked)
             {
                 if (searchStartIndex == 0)
-                    searchStartIndex = stringText.Length - 1;
+                    searchStartIndex = DataClass.form1_main.textBox1.Text.Length - 1;
 
-                searchStartIndex = stringText.LastIndexOf(searchValue, searchStartIndex, comparisonType);
+                searchStartIndex = DataClass.form1_main.textBox1.Text.LastIndexOf(searchField.Text, searchStartIndex, comparisonType);
 
                 if (searchStartIndex < 0)
                 {
                     DataClass.errorForm = new ErrorForm();
-                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchValue}";
+                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchField.Text}";
                     DataClass.errorForm.Show();
                     searchStartIndex = 0;
                     return;
@@ -80,8 +80,8 @@ namespace WinFormsApp4
                     DataClass.form1_main.textBox1.Focus();
                     DataClass.form1_main.textBox1.SelectionLength = 0;
                     DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
-                    DataClass.form1_main.textBox1.SelectionLength = searchValue.Length;
-                    searchStartIndex -= searchValue.Length;
+                    DataClass.form1_main.textBox1.SelectionLength = searchField.TextLength;
+                    searchStartIndex -= searchField.TextLength;
                 }
             }
         }
@@ -105,12 +105,12 @@ namespace WinFormsApp4
 
         private void buttonSearch_MouseHover(object sender, EventArgs e)
         {
-            //buttonSearch.BackColor = Color.PowderBlue;
+            
         }
 
         private void buttonSearch_MouseLeave(object sender, EventArgs e)
         {
-            //buttonSearch.BackColor = Control.DefaultBackColor;
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)

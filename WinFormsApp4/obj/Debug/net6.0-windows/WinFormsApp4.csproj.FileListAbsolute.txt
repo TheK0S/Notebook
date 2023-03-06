@@ -38,3 +38,4 @@ C:\Users\turchak\Source\Repos\Notebook\WinFormsApp4\obj\Debug\net6.0-windows\Win
 C:\Users\turchak\Source\Repos\Notebook\WinFormsApp4\obj\Debug\net6.0-windows\WinFormsApp4.Properties.Resources.resources
 C:\Users\turchak\Source\Repos\Notebook\WinFormsApp4\obj\Debug\net6.0-windows\WinFormsApp4.FormReplace.resources
 C:\Users\turchak\Source\Repos\Notebook\WinFormsApp4\obj\Debug\net6.0-windows\WinFormsApp4.FormGoTo.resources
+C:\Users\turchak\Source\Repos\Notebook\WinFormsApp4\obj\Debug\net6.0-windows\WinFormsApp4.FormConfirmation.resources

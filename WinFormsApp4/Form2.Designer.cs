@@ -39,6 +39,7 @@
             this.ToDownRadioButton = new System.Windows.Forms.RadioButton();
             this.ToUpRadioButton = new System.Windows.Forms.RadioButton();
             this.CancelBatton = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -232,5 +233,6 @@
         private GroupBox groupBox1;
         public RadioButton ToDownRadioButton;
         public RadioButton ToUpRadioButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

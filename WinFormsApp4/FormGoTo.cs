@@ -43,7 +43,7 @@ namespace WinFormsApp4
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDown1.Minimum = 1;            
+            numericUpDown1.Minimum = 1;
         }
 
         private void buttonGoTo_Click(object sender, EventArgs e)

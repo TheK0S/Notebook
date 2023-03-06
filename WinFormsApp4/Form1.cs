@@ -45,7 +45,12 @@ namespace WinFormsApp4
 
         private void ñîçäàòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
+            FormConfirmation form = new FormConfirmation();
+
+            if (ShowDialog(form) == DialogResult.OK)
+                textBox1.Clear();
+            else
+                form.Close();
         }
 
         private void âûõîäToolStripMenuItem_Click(object sender, EventArgs e)
@@ -144,6 +149,62 @@ namespace WinFormsApp4
         {
             DataClass.form2_search.ToUpRadioButton.Checked = true;
             DataClass.form2_search.buttonSearch_Click(sender, e);
+        }
+
+        private void îòêğûòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = File.ReadAllText(openFileDialog1.FileName);
+            }
+        }
+
+        private void ñîõğàíèòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(openFileDialog1.FileName, textBox1.Text);
+        }
+
+        private void ñîõğàíèòüÊàêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                File.WriteAllText(saveFileDialog1.FileName, textBox1.Text);
+        }
+
+        private void íîâîåÎêíîToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.Open("WinFormsApp4.exe", FileMode.Open);
+        }
+
+        private void âğåìÿÈÄàòàToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, DateTime.Now.ToString());
+        }
+
+        private void øğèôòToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ïåğåíîñÏîÑëîâàìToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void óâåëè÷èòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Font.Size < DefaultFont.Size * 5)
+                textBox1.Font = new Font(textBox1.Font.FontFamily, textBox1.Font.Size + 1);
+        }
+
+        private void óìåíüøèòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Font.Size > 1)
+                textBox1.Font = new Font(textBox1.Font.FontFamily, textBox1.Font.Size - 1);
+        }
+
+        private void âîññòàíîâèòüÌàñøòàáÏîÓìîë÷àíèşToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Font = DefaultFont;
         }
     }
 }

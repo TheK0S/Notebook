@@ -13,12 +13,14 @@ namespace WinFormsApp4
 {
     public partial class Form2 : Form
     {
+        int id;
         Point lastPoint;
         int searchStartIndex;
-        int searchLength;
-        public Form2()
+
+        public Form2(int id)
         {
             InitializeComponent();
+            this.id = id;
         }
 
         private void searchField_TextChanged(object sender, EventArgs e)
@@ -28,10 +30,10 @@ namespace WinFormsApp4
 
         public void buttonSearch_Click(object sender, EventArgs e)
         {
-            if(DataClass.errorForm != null)
-                DataClass.errorForm.Close();
+            if (DataClass.errorForm[id] != null)
+                DataClass.errorForm[id].Close();
 
-            string stringText = DataClass.form1_main.textBox1.Text;
+            string stringText = DataClass.form1_main[id].textBox1.Text;
             string searchValue = searchField.Text;
 
             StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
@@ -41,46 +43,46 @@ namespace WinFormsApp4
 
             if (ToDownRadioButton.Checked)
             {
-                searchStartIndex = DataClass.form1_main.textBox1.Text.IndexOf(searchField.Text, searchStartIndex, comparisonType);
+                searchStartIndex = DataClass.form1_main[id].textBox1.Text.IndexOf(searchField.Text, searchStartIndex, comparisonType);
                 
                 if (searchStartIndex < 0)
                 {
-                    DataClass.errorForm = new ErrorForm();
-                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchField.Text}";
-                    DataClass.errorForm.Show();
+                    DataClass.errorForm[id] = new ErrorForm();
+                    DataClass.errorForm[id].label1.Text = $"Не удается найти: {searchField.Text}";
+                    DataClass.errorForm[id].Show();
                     searchStartIndex = 0;
                     return;
                 }
                 else
                 {
-                    DataClass.form1_main.textBox1.Focus();
-                    DataClass.form1_main.textBox1.SelectionLength = 0;
-                    DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
-                    DataClass.form1_main.textBox1.SelectionLength = searchField.TextLength;                    
+                    DataClass.form1_main[id].textBox1.Focus();
+                    DataClass.form1_main[id].textBox1.SelectionLength = 0;
+                    DataClass.form1_main[id].textBox1.SelectionStart = searchStartIndex;
+                    DataClass.form1_main[id].textBox1.SelectionLength = searchField.TextLength;                    
                     searchStartIndex += searchField.TextLength;                  
                 }
             }
             else if (ToUpRadioButton.Checked)
             {
                 if (searchStartIndex == 0)
-                    searchStartIndex = DataClass.form1_main.textBox1.Text.Length - 1;
+                    searchStartIndex = DataClass.form1_main[id].textBox1.Text.Length - 1;
 
-                searchStartIndex = DataClass.form1_main.textBox1.Text.LastIndexOf(searchField.Text, searchStartIndex, comparisonType);
+                searchStartIndex = DataClass.form1_main[id].textBox1.Text.LastIndexOf(searchField.Text, searchStartIndex, comparisonType);
 
                 if (searchStartIndex < 0)
                 {
-                    DataClass.errorForm = new ErrorForm();
-                    DataClass.errorForm.label1.Text = $"Не удается найти: {searchField.Text}";
-                    DataClass.errorForm.Show();
+                    DataClass.errorForm[id] = new ErrorForm();
+                    DataClass.errorForm[id].label1.Text = $"Не удается найти: {searchField.Text}";
+                    DataClass.errorForm[id].Show();
                     searchStartIndex = 0;
                     return;
                 }
                 else
                 {
-                    DataClass.form1_main.textBox1.Focus();
-                    DataClass.form1_main.textBox1.SelectionLength = 0;
-                    DataClass.form1_main.textBox1.SelectionStart = searchStartIndex;
-                    DataClass.form1_main.textBox1.SelectionLength = searchField.TextLength;
+                    DataClass.form1_main[id].textBox1.Focus();
+                    DataClass.form1_main[id].textBox1.SelectionLength = 0;
+                    DataClass.form1_main[id].textBox1.SelectionStart = searchStartIndex;
+                    DataClass.form1_main[id].textBox1.SelectionLength = searchField.TextLength;
                     searchStartIndex -= searchField.TextLength;
                 }
             }

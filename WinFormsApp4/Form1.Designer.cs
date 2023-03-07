@@ -356,7 +356,7 @@
             // строкаСостоянияToolStripMenuItem
             // 
             this.строкаСостоянияToolStripMenuItem.Name = "строкаСостоянияToolStripMenuItem";
-            this.строкаСостоянияToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.строкаСостоянияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.строкаСостоянияToolStripMenuItem.Text = "Строка состояния";
             // 
             // справкаToolStripMenuItem
@@ -375,6 +375,7 @@
             this.просмотретьСправкуToolStripMenuItem.Name = "просмотретьСправкуToolStripMenuItem";
             this.просмотретьСправкуToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.просмотретьСправкуToolStripMenuItem.Text = "Просмотреть справку";
+            this.просмотретьСправкуToolStripMenuItem.Click += new System.EventHandler(this.просмотретьСправкуToolStripMenuItem_Click);
             // 
             // отправитьОтзывToolStripMenuItem
             // 

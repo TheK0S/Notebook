@@ -12,54 +12,56 @@ namespace WinFormsApp4
 {
     public partial class FormReplace : Form
     {
+        int id;
         int startIndex;
-        public FormReplace()
+        public FormReplace(int id)
         {
             InitializeComponent();
+            this.id = id;
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            if (DataClass.errorForm != null)
-                DataClass.errorForm.Close();
+            if (DataClass.errorForm[id] != null)
+                DataClass.errorForm[id].Close();
 
             StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
             if (checkBoxRegister.Checked)
                 comparisonType = StringComparison.Ordinal;
 
-            startIndex = DataClass.form1_main.textBox1.Text.IndexOf(searchField.Text, startIndex, comparisonType);
+            startIndex = DataClass.form1_main[id].textBox1.Text.IndexOf(searchField.Text, startIndex, comparisonType);
 
             if (startIndex < 0)
             {
-                DataClass.errorForm = new ErrorForm();
-                DataClass.errorForm.label1.Text = $"Не удается найти: {searchField.Text}";
-                DataClass.errorForm.Show();
+                DataClass.errorForm[id] = new ErrorForm();
+                DataClass.errorForm[id].label1.Text = $"Не удается найти: {searchField.Text}";
+                DataClass.errorForm[id].Show();
                 startIndex = 0;
                 return;
             }
             else
             {
-                DataClass.form1_main.textBox1.Focus();
-                DataClass.form1_main.textBox1.SelectionLength = 0;
-                DataClass.form1_main.textBox1.SelectionStart = startIndex;
-                DataClass.form1_main.textBox1.SelectionLength = searchField.TextLength;
+                DataClass.form1_main[id].textBox1.Focus();
+                DataClass.form1_main[id].textBox1.SelectionLength = 0;
+                DataClass.form1_main[id].textBox1.SelectionStart = startIndex;
+                DataClass.form1_main[id].textBox1.SelectionLength = searchField.TextLength;
                 startIndex++;
             }
         }
 
         private void buttonReplace_Click(object sender, EventArgs e)
         {
-            if(DataClass.form1_main.textBox1.SelectedText == searchField.Text)
+            if(DataClass.form1_main[id].textBox1.SelectedText == searchField.Text)
             {
-                int selectionStartPos = DataClass.form1_main.textBox1.SelectionStart;
+                int selectionStartPos = DataClass.form1_main[id].textBox1.SelectionStart;
 
-                DataClass.form1_main.textBox1.Text = DataClass.form1_main.textBox1.Text.Remove(
-                    DataClass.form1_main.textBox1.SelectionStart, DataClass.form1_main.textBox1.SelectionLength);
+                DataClass.form1_main[id].textBox1.Text = DataClass.form1_main[id].textBox1.Text.Remove(
+                    DataClass.form1_main[id].textBox1.SelectionStart, DataClass.form1_main[id].textBox1.SelectionLength);
 
-                DataClass.form1_main.textBox1.Text = DataClass.form1_main.textBox1.Text.Insert(selectionStartPos, ReplaceField.Text);
+                DataClass.form1_main[id].textBox1.Text = DataClass.form1_main[id].textBox1.Text.Insert(selectionStartPos, ReplaceField.Text);
 
-                DataClass.form1_main.textBox1.SelectionLength = ReplaceField.TextLength;
+                DataClass.form1_main[id].textBox1.SelectionLength = ReplaceField.TextLength;
             }            
         }
 
@@ -70,15 +72,15 @@ namespace WinFormsApp4
             if (checkBoxRegister.Checked)
                 comparisonType = StringComparison.Ordinal;
 
-            string textBeforeReplace = DataClass.form1_main.textBox1.Text;
+            string textBeforeReplace = DataClass.form1_main[id].textBox1.Text;
 
-            DataClass.form1_main.textBox1.Text = DataClass.form1_main.textBox1.Text.Replace(searchField.Text, ReplaceField.Text, comparisonType);
+            DataClass.form1_main[id].textBox1.Text = DataClass.form1_main[id].textBox1.Text.Replace(searchField.Text, ReplaceField.Text, comparisonType);
 
-            if(textBeforeReplace == DataClass.form1_main.textBox1.Text)
+            if(textBeforeReplace == DataClass.form1_main[id].textBox1.Text)
             {
-                DataClass.errorForm = new ErrorForm();
-                DataClass.errorForm.label1.Text = "Замена не произошла, не найден искомый текст";
-                DataClass.errorForm.Show();
+                DataClass.errorForm[id] = new ErrorForm();
+                DataClass.errorForm[id].label1.Text = "Замена не произошла, не найден искомый текст";
+                DataClass.errorForm[id].Show();
             }
         }
 

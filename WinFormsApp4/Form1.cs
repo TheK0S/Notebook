@@ -3,10 +3,12 @@ using System.Security.Permissions;
 namespace WinFormsApp4
 {
     public partial class Form1 : Form
-    {      
-        public Form1()
+    {
+        int id;
+        public Form1(int id)
         {
             InitializeComponent();
+            this.id = id;
         }
 
         private void menuHeader_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -68,14 +70,14 @@ namespace WinFormsApp4
 
         private void íàéòèToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataClass.form2_search = new Form2();
-            DataClass.form2_search.Show();
+            DataClass.form2_search[id] = new Form2(id);
+            DataClass.form2_search[id].Show();
         }
 
         private void çàìåíèòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataClass.formReplace = new FormReplace();   
-            DataClass.formReplace.Show();
+            DataClass.formReplace[id] = (new FormReplace(id));
+            DataClass.formReplace[id].Show();
         }
 
         private void âûäåëèòüÂñåToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,8 +97,8 @@ namespace WinFormsApp4
 
         private void ïåğåéòèToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataClass.formGoTo = new FormGoTo();
-            DataClass.formGoTo.Show();
+            DataClass.formGoTo[id] = new FormGoTo(id);
+            DataClass.formGoTo[id].Show();
         }
 
         private void fontDialog1_Apply(object sender, EventArgs e)
@@ -128,9 +130,9 @@ namespace WinFormsApp4
 
             íàéòèToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
 
-            íàéòèÄàëååToolStripMenuItem.Enabled = textBox1.TextLength > 0 && DataClass.form2_search.Visible ? true : false;
+            íàéòèÄàëååToolStripMenuItem.Enabled = textBox1.TextLength > 0 && DataClass.form2_search[id].Visible ? true : false;
 
-            íàéòèĞàíååToolStripMenuItem.Enabled = textBox1.TextLength > 0 && DataClass.form2_search.Visible ? true : false;
+            íàéòèĞàíååToolStripMenuItem.Enabled = textBox1.TextLength > 0 && DataClass.form2_search[id].Visible ? true : false;
 
             çàìåíèòüToolStripMenuItem.Enabled = textBox1.TextLength > 0 ? true : false;
 
@@ -141,14 +143,14 @@ namespace WinFormsApp4
 
         private void íàéòèÄàëååToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataClass.form2_search.ToDownRadioButton.Checked = true;
-            DataClass.form2_search.buttonSearch_Click(sender, e);
+            DataClass.form2_search[id].ToDownRadioButton.Checked = true;
+            DataClass.form2_search[id].buttonSearch_Click(sender, e);
         }
 
         private void íàéòèĞàíååToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataClass.form2_search.ToUpRadioButton.Checked = true;
-            DataClass.form2_search.buttonSearch_Click(sender, e);
+            DataClass.form2_search[id].ToUpRadioButton.Checked = true;
+            DataClass.form2_search[id].buttonSearch_Click(sender, e);
         }
 
         private void îòêğûòüToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,7 +174,7 @@ namespace WinFormsApp4
 
         private void íîâîåÎêíîToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            File.Open("WinFormsApp4.exe", FileMode.Open);
+            DataClass.SetCapacity(id + 1);
         }
 
         private void âğåìÿÈÄàòàToolStripMenuItem_Click(object sender, EventArgs e)
@@ -205,6 +207,25 @@ namespace WinFormsApp4
         private void âîññòàíîâèòüÌàñøòàáÏîÓìîë÷àíèşToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBox1.Font = DefaultFont;
+        }
+
+        private void ïğîñìîòğåòüÑïğàâêóToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string referenceLink = "https://www.google.com";
+
+            try
+            {
+                System.Diagnostics.Process.Start(referenceLink);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
         }
     }
 }

@@ -326,7 +326,7 @@
             this.уменьшитьToolStripMenuItem,
             this.восстановитьМасштабПоУмолчаниюToolStripMenuItem});
             this.масштабToolStripMenuItem.Name = "масштабToolStripMenuItem";
-            this.масштабToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.масштабToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.масштабToolStripMenuItem.Text = "Масштаб";
             // 
             // увеличитьToolStripMenuItem
@@ -356,7 +356,7 @@
             // строкаСостоянияToolStripMenuItem
             // 
             this.строкаСостоянияToolStripMenuItem.Name = "строкаСостоянияToolStripMenuItem";
-            this.строкаСостоянияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.строкаСостоянияToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.строкаСостоянияToolStripMenuItem.Text = "Строка состояния";
             // 
             // справкаToolStripMenuItem
@@ -420,7 +420,7 @@
             this.Controls.Add(this.menuHeader);
             this.MainMenuStrip = this.menuHeader;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Блокнот";
             this.menuHeader.ResumeLayout(false);
             this.menuHeader.PerformLayout();
             this.ResumeLayout(false);

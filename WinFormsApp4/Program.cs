@@ -13,9 +13,11 @@ namespace WinFormsApp4
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            DataClass.form1_main.Add(new Form1(0));
-            DataClass.objectCounter++;
-            Application.Run(DataClass.form1_main[0]);
+
+            var formData = new DataClass();
+            formData.form1_main = new Form1(ref formData);
+
+            Application.Run(formData.form1_main);
 
         }
     }

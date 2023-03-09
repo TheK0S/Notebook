@@ -13,9 +13,11 @@ namespace WinFormsApp4
 {
     public partial class ErrorForm : Form
     {
-        public ErrorForm()
+        DataClass formsData;
+        public ErrorForm(ref DataClass formsData)
         {
             InitializeComponent();
+            this.formsData = formsData;
         }
 
         private void closeButtonErrorForm_Click(object sender, EventArgs e)
@@ -33,6 +35,16 @@ namespace WinFormsApp4
         {
             closeButtonErrorForm.BackColor = DefaultBackColor;
             closeButtonErrorForm.ForeColor = Color.DarkGray;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

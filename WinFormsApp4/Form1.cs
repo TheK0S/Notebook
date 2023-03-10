@@ -312,8 +312,6 @@ namespace WinFormsApp4
             formsData.formGoTo?.Close();            
         }
 
-        System.Drawing.Printing.PrintDocument docToPrint = new System.Drawing.Printing.PrintDocument();
-
         private void ïå÷àòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
             printDialog1.AllowSomePages = true;

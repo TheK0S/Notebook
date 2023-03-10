@@ -50,7 +50,7 @@ namespace WinFormsApp4
 
         private void buttonGoTo_Click(object sender, EventArgs e)
         {
-            int index = formsData.form1_main.textBox1.GetFirstCharIndexFromLine((int)numericUpDown1.Value);
+            int index = formsData.form1_main.textBox1.GetFirstCharIndexFromLine((int)numericUpDown1.Value + 1);
             if (index == -1)
                 formsData.form1_main.textBox1.SelectionStart = formsData.form1_main.textBox1.TextLength;
             else

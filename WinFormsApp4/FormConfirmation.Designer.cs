@@ -82,6 +82,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormConfirmation";
             this.Text = "FormConfirmation";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

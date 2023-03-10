@@ -133,6 +133,7 @@
             this.MinimumSize = new System.Drawing.Size(373, 159);
             this.Name = "FormGoTo";
             this.Text = "FormGoTo";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -68,11 +68,18 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.currentSelectedStart = new System.Windows.Forms.Label();
+            this.currentScale = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuHeader.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuHeader
             // 
+            this.menuHeader.BackColor = System.Drawing.SystemColors.Window;
             this.menuHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.правкаToolStripMenuItem,
@@ -81,7 +88,8 @@
             this.справкаToolStripMenuItem});
             this.menuHeader.Location = new System.Drawing.Point(0, 0);
             this.menuHeader.Name = "menuHeader";
-            this.menuHeader.Size = new System.Drawing.Size(800, 24);
+            this.menuHeader.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuHeader.Size = new System.Drawing.Size(1053, 25);
             this.menuHeader.TabIndex = 0;
             this.menuHeader.Text = "menuStrip1";
             this.menuHeader.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuHeader_ItemClicked);
@@ -98,7 +106,7 @@
             this.печатьToolStripMenuItem,
             this.выходToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 19);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // создатьToolStripMenuItem
@@ -180,7 +188,7 @@
             this.выделитьВсеToolStripMenuItem,
             this.времяИДатаToolStripMenuItem});
             this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
-            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(59, 19);
             this.правкаToolStripMenuItem.Text = "Правка";
             this.правкаToolStripMenuItem.Click += new System.EventHandler(this.правкаToolStripMenuItem_Click);
             // 
@@ -293,7 +301,7 @@
             this.переносПоСловамToolStripMenuItem,
             this.шрифтToolStripMenuItem});
             this.форматToolStripMenuItem.Name = "форматToolStripMenuItem";
-            this.форматToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.форматToolStripMenuItem.Size = new System.Drawing.Size(62, 19);
             this.форматToolStripMenuItem.Text = "Формат";
             // 
             // переносПоСловамToolStripMenuItem
@@ -316,7 +324,7 @@
             this.масштабToolStripMenuItem,
             this.строкаСостоянияToolStripMenuItem});
             this.видToolStripMenuItem.Name = "видToolStripMenuItem";
-            this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 19);
             this.видToolStripMenuItem.Text = "Вид";
             // 
             // масштабToolStripMenuItem
@@ -358,6 +366,7 @@
             this.строкаСостоянияToolStripMenuItem.Name = "строкаСостоянияToolStripMenuItem";
             this.строкаСостоянияToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.строкаСостоянияToolStripMenuItem.Text = "Строка состояния";
+            this.строкаСостоянияToolStripMenuItem.Click += new System.EventHandler(this.строкаСостоянияToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
@@ -366,7 +375,7 @@
             this.отправитьОтзывToolStripMenuItem,
             this.оПрограммеToolStripMenuItem});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 19);
             this.справкаToolStripMenuItem.Text = "Справка";
             this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
             // 
@@ -391,14 +400,20 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 24);
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.HideSelection = false;
+            this.textBox1.Location = new System.Drawing.Point(0, 25);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(800, 426);
+            this.textBox1.Size = new System.Drawing.Size(1053, 473);
             this.textBox1.TabIndex = 1;
+            this.textBox1.WordWrap = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Resize += new System.EventHandler(this.textBox1_Resize);
             // 
             // openFileDialog1
             // 
@@ -411,18 +426,112 @@
             this.saveFileDialog1.Filter = "txt|*txt";
             this.saveFileDialog1.Title = "Сохранение";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.2423F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.7577F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
+            this.tableLayoutPanel1.Controls.Add(this.currentSelectedStart, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.currentScale, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 4, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 468);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(0, 30);
+            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(0, 30);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 30);
+            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Visible = false;
+            // 
+            // currentSelectedStart
+            // 
+            this.currentSelectedStart.BackColor = System.Drawing.SystemColors.Window;
+            this.currentSelectedStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentSelectedStart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.currentSelectedStart.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.currentSelectedStart.Location = new System.Drawing.Point(478, 4);
+            this.currentSelectedStart.Margin = new System.Windows.Forms.Padding(0);
+            this.currentSelectedStart.Name = "currentSelectedStart";
+            this.currentSelectedStart.Size = new System.Drawing.Size(139, 22);
+            this.currentSelectedStart.TabIndex = 0;
+            this.currentSelectedStart.Text = "Стр 1, слб 0";
+            this.currentSelectedStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // currentScale
+            // 
+            this.currentScale.BackColor = System.Drawing.SystemColors.Window;
+            this.currentScale.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentScale.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.currentScale.Location = new System.Drawing.Point(617, 4);
+            this.currentScale.Margin = new System.Windows.Forms.Padding(0);
+            this.currentScale.Name = "currentScale";
+            this.currentScale.Size = new System.Drawing.Size(70, 22);
+            this.currentScale.TabIndex = 1;
+            this.currentScale.Text = "100%";
+            this.currentScale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.Window;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(687, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(186, 22);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Windows (CRLF)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.Window;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(873, 4);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(177, 22);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "UTF-8";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(1053, 498);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuHeader);
+            this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuHeader;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
-            this.Text = "Блокнот";
+            this.Text = "Безымянный - Блокнот";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.menuHeader.ResumeLayout(false);
             this.menuHeader.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,5 +579,10 @@
         public TextBox textBox1;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label currentSelectedStart;
+        private Label currentScale;
+        private Label label2;
+        private Label label3;
     }
 }

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Security.Permissions;
 using static System.Windows.Forms.DataFormats;
 
@@ -5,13 +6,18 @@ namespace WinFormsApp4
 {
     public partial class Form1 : Form
     {
+        uint currentPercentScale = 100;
         DataClass formsData;
+
         public Form1(ref DataClass formsData)
         {
             InitializeComponent();
             this.formsData = formsData;
 
             formsData.form2_search = new Form2(ref formsData);
+
+            ïåğåíîñÏîÑëîâàìToolStripMenuItem.CheckOnClick = true;
+            ñòğîêàÑîñòîÿíèÿToolStripMenuItem.CheckOnClick = true;
         }
 
         private void menuHeader_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -27,7 +33,8 @@ namespace WinFormsApp4
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+            currentSelectedStart.Text = $"Ñòğ {textBox1.GetLineFromCharIndex(textBox1.SelectionStart) + 1}, " +
+                $"ñòëá {textBox1.SelectionStart - textBox1.GetFirstCharIndexOfCurrentLine()}";
         }
 
         private void êîïèğîâàòüToolStripMenuItem_Click(object sender, EventArgs e)
@@ -200,24 +207,36 @@ namespace WinFormsApp4
 
         private void ïåğåíîñÏîÑëîâàìToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (ïåğåíîñÏîÑëîâàìToolStripMenuItem.Checked)
+                textBox1.WordWrap = true;
+            else
+                textBox1.WordWrap = false;
         }
 
         private void óâåëè÷èòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(textBox1.Font.Size < DefaultFont.Size * 5)
+            if (textBox1.Font.Size < DefaultFont.Size * 5)
+            {
                 textBox1.Font = new Font(textBox1.Font.FontFamily, textBox1.Font.Size + 1);
+                currentPercentScale += 10;
+                currentSelectedStart.Text = $"{currentPercentScale}%";
+            }                
         }
 
         private void óìåíüøèòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(textBox1.Font.Size > 1)
+            {
                 textBox1.Font = new Font(textBox1.Font.FontFamily, textBox1.Font.Size - 1);
+                currentPercentScale -= 10;
+                currentSelectedStart.Text = $"{currentPercentScale}%";
+            }                
         }
 
         private void âîññòàíîâèòüÌàñøòàáÏîÓìîë÷àíèşToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBox1.Font = DefaultFont;
+            currentPercentScale = 100;
         }
 
         private void ïğîñìîòğåòüÑïğàâêóToolStripMenuItem_Click(object sender, EventArgs e)
@@ -238,101 +257,49 @@ namespace WinFormsApp4
                 MessageBox.Show(other.Message);
             }
         }
-    }
-}
-/*
- using Microsoft.VisualBasic;
 
-namespace WinFormsApp5
-{
-    public partial class Form1 : Form
-    {
-        string buffer;
-        public Form1()
+        private void ñòğîêàÑîñòîÿíèÿToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
-
-
-            textBox1.Multiline= true;
-            textBox1.Dock= DockStyle.Fill;
-
-
-            ToolStripMenuItem copyMenuItem = new ToolStripMenuItem("Copy");
-            ToolStripMenuItem pasteMenuItem = new ToolStripMenuItem("Paste");
-
-
-            contextMenuStrip1.Items.AddRange(new[] { copyMenuItem, pasteMenuItem });
-
-            textBox1.ContextMenuStrip = contextMenuStrip1;
-
-
-            copyMenuItem.Click += copyMenuIteam_Click;
-            pasteMenuItem.Click += pasteMenuIteam_Click;
-
+            if(ñòğîêàÑîñòîÿíèÿToolStripMenuItem.Checked)
+            {
+                textBox1.Dock = DockStyle.Top;
+                textBox1.Height = this.Height - 95;
+                tableLayoutPanel1.Visible = true;
+            }
+            else
+            {
+                tableLayoutPanel1.Visible = false;
+                textBox1.Dock = DockStyle.Fill;
+            }
         }
-        //    ToolStripMenuItem fileItem = new ToolStripMenuItem("File");
 
-        //    ToolStripMenuItem newItem = new ToolStripMenuItem("Add")
-        //    {
-        //        Checked = true,
-        //        CheckOnClick = true
-
-        //    };
-        //    newItem.CheckedChanged += menuItem_ChakedChanged;
-        //    fileItem.DropDownItems.Add(newItem);
-
-        //    ToolStripMenuItem saveItem = new ToolStripMenuItem("Save")
-        //    {
-        //        Checked = true,
-        //        CheckOnClick = true
-
-        //    };
-        //    saveItem.CheckedChanged += menuItem_ChakedChanged;
-        //    saveItem.ShortcutKeys = Keys.Control | Keys.P;
-        //    fileItem.DropDownItems.Add(saveItem);
-
-        //    //fileItem.DropDownItems.Add(new ToolStripMenuItem("Save"));
-
-        //    menuStrip1.Items.Add(fileItem);
-
-        //    ToolStripMenuItem aboutItem = new ToolStripMenuItem("About");
-        //    aboutItem.Click += aboutItem_Click;
-        //    menuStrip1.Items.Add(aboutItem);
-        //}
-
-        //void aboutItem_Click(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("About programm");
-        //}
-        //void menuItem_ChakedChanged(object sender, EventArgs e)
-        //{
-        //    ToolStripMenuItem menuItem= sender as ToolStripMenuItem;
-        //    if (menuItem.CheckState == CheckState.Checked)
-        //        MessageBox.Show("Checked");
-        //    else if(menuItem.CheckState == CheckState.Unchecked)
-        //        MessageBox.Show("Unchecked");
-
-        //}
-
-
-
-        
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
 
-        void copyMenuIteam_Click(object sender, EventArgs e)
+        private void textBox1_Resize(object sender, EventArgs e)
         {
-           buffer = textBox1.SelectedText;  
+
         }
 
-        void pasteMenuIteam_Click(object sender, EventArgs e)
+        private void Form1_Resize(object sender, EventArgs e)
         {
-            textBox1.Paste(buffer);
+            if(ñòğîêàÑîñòîÿíèÿToolStripMenuItem.Checked)
+                textBox1.Height = this.Height - 95;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formsData.form2_search?.Close();
+            formsData.errorForm?.Close();
+            formsData.formReplace?.Close();
+            formsData.formGoTo?.Close();            
         }
     }
 }
- */

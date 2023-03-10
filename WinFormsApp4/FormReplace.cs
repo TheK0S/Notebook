@@ -42,7 +42,6 @@ namespace WinFormsApp4
             }
             else
             {
-                formsData.form1_main.textBox1.Focus();
                 formsData.form1_main.textBox1.SelectionLength = 0;
                 formsData.form1_main.textBox1.SelectionStart = startIndex;
                 formsData.form1_main.textBox1.SelectionLength = searchField.TextLength;

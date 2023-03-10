@@ -1,5 +1,7 @@
+using System.Drawing.Printing;
 using System.Runtime.CompilerServices;
 using System.Security.Permissions;
+using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 
 namespace WinFormsApp4
@@ -202,7 +204,15 @@ namespace WinFormsApp4
 
         private void øðèôòToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            fontDialog1.ShowColor = true;
+            fontDialog1.FontMustExist = true;
+            fontDialog1.ShowEffects = true;
+            
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Font = fontDialog1.Font;
+                textBox1.ForeColor = fontDialog1.Color;
+            }
         }
 
         private void ïåðåíîñÏîÑëîâàìToolStripMenuItem_Click(object sender, EventArgs e)
@@ -300,6 +310,27 @@ namespace WinFormsApp4
             formsData.errorForm?.Close();
             formsData.formReplace?.Close();
             formsData.formGoTo?.Close();            
+        }
+
+        System.Drawing.Printing.PrintDocument docToPrint = new System.Drawing.Printing.PrintDocument();
+
+        private void ïå÷àòüToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog1.AllowSomePages = true;
+            printDialog1.ShowHelp = true;
+            //printDialog1.Document = docToPrint;
+
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += printDocument1_PrintPage;
+            printDialog1.Document = printDocument;
+
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+                printDialog1.Document.Print();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(textBox1.Text, textBox1.Font, Brushes.Black, 10, 10);
         }
     }
 }

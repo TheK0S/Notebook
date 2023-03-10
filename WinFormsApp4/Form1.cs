@@ -176,18 +176,25 @@ namespace WinFormsApp4
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = File.ReadAllText(openFileDialog1.FileName);
+                Text = openFileDialog1.FileName;
             }
         }
 
         private void ñîõğàíèòüToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(openFileDialog1.FileName, textBox1.Text);
+            if (openFileDialog1.FileName != "openFileDialog1")
+                File.WriteAllText(openFileDialog1.FileName, textBox1.Text);
+            else
+                ñîõğàíèòüÊàêToolStripMenuItem_Click(sender, e);
         }
 
         private void ñîõğàíèòüÊàêToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
                 File.WriteAllText(saveFileDialog1.FileName, textBox1.Text);
+                Text = saveFileDialog1.FileName;
+            }                
         }
 
         private void íîâîåÎêíîToolStripMenuItem_Click(object sender, EventArgs e)
